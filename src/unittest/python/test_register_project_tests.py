@@ -1,6 +1,6 @@
 import unittest
-from uc3m_consulting import EnterpriseManager, EnterpriseManagementException
-
+# Format: from folder.file import Class
+from uc3m_consulting.enterprise_manager import EnterpriseManager, EnterpriseManagementException
 class TestRegisterProject(unittest.TestCase):
     """Test suite for the register_project method (Method 1)"""
 

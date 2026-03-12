@@ -1,4 +1,9 @@
 """Module """
+class EnterpriseManagementException(Exception):
+    """Custom exception for UC3M Consulting Project"""
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
