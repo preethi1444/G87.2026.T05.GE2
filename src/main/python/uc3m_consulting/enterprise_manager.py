@@ -1,3 +1,8 @@
+import json
+import os
+from .enterprise_management_exception import EnterpriseManagementException
+from .enterprise_project import EnterpriseProject
+
 """Module """
 class EnterpriseManagementException(Exception):
     """Custom exception for UC3M Consulting Project"""
@@ -15,3 +20,5 @@ class EnterpriseManager:
         """RETURNs TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
         OR FALSE IN OTHER CASE"""
         return True
+
+
