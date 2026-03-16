@@ -40,5 +40,13 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "hr", "15/06/2026", 100000.00)
 
+    #TC5 - Budget just below min
+    @freeze_time("2025-01-01")
+    def test_tc5_budget_below_min(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 49999.99)
+
+
+
 if __name__ == "__main__":
      unittest.main()
