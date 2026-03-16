@@ -17,7 +17,7 @@ class TestRegisterProject(unittest.TestCase):
     #TC1 - Baseline valid case
     @freeze_time("2025-01-01")
     def test_tc1_valid_baseline(self):
-        res=self.mgr.register_project("A12345674", "PROJ01", "Research Project 2026", "HR", "15/06/2026", 100000.00)
+        res=self.mgr.register_project("A12345678", "PROJ01", "Research Project 2026", "HR", "15/06/2026", 100000.00)
         self.assertIsInstance(res, str)
         self.assertEqual(len(res), 32)
         self.assertTrue(all(c in "0123456789abcdef" for c in res))
