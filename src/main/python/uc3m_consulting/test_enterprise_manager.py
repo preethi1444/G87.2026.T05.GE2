@@ -76,6 +76,11 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "31/12/2024", 75.0002)
 
+    #TC11 - Acronym at max (10)
+    @freeze_time("2025-01-01")
+    def test_tc11_acr_at_max(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJECT001", "Main Research Proj", "HR", "31/12/2024", 100000.00)
 
 
 
