@@ -28,6 +28,12 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345678", "PRJ1", "Main Research Proj", "HR", "15/06/2026", 100000.00)
 
+    #TC3 - CIF too long (10)
+    @freeze_time("2025-01-01")
+    def test_tc3_cif_long(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A123456749", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 100000.00)
+
 
 if __name__ == "__main__":
      unittest.main()
