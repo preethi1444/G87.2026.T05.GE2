@@ -52,6 +52,11 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 1000000.00)
 
+    #TC7 - CIF wrong checksum
+    @freeze_time("2025-01-01")
+    def test_tc7_wrong_checksum(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345670", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 100000.00)
 
 
 if __name__ == "__main__":
