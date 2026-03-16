@@ -88,6 +88,11 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ!", "Main Research Proj", "HR", "31/12/2024", 100000.00)
 
+    # TC13 - Date at end of range
+    @freeze_time("2025-01-01")
+    def test_tc13_date_end_of_range(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJ01!", "Main Research Proj", "HR", "31/12/2027", 100000.00)
 
 
 if __name__ == "__main__":
