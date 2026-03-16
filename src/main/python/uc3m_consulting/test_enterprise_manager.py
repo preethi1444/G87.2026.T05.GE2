@@ -64,5 +64,16 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Research Project Different Than Last Year's in 2025", "HR", "15/06/2026", 100000.00)
 
+    #TC9 - Date in 2024
+    @freeze_time("2025-01-01")
+    def test_tc9_wrong_checksum(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "31/12/2024", 100000.00)
+
+
+
+
+
+
 if __name__ == "__main__":
      unittest.main()
