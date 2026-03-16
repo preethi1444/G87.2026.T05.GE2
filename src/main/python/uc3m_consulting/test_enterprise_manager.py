@@ -46,6 +46,12 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 49999.99)
 
+    #TC6 - Budget at exact max
+    @freeze_time("2025-01-01")
+    def test_tc6_budget_at_max(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 1000000.00)
+
 
 
 if __name__ == "__main__":
