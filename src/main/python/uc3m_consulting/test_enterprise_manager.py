@@ -60,16 +60,21 @@ class TestRegisterProject(unittest.TestCase):
 
     #TC8 - Desc too long (31)
     @freeze_time("2025-01-01")
-    def test_tc8_wrong_checksum(self):
+    def test_tc8_desc_too_long(self):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Research Project Different Than Last Year's in 2025", "HR", "15/06/2026", 100000.00)
 
     #TC9 - Date in 2024
     @freeze_time("2025-01-01")
-    def test_tc9_wrong_checksum(self):
+    def test_tc9_date_wrong(self):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "31/12/2024", 100000.00)
 
+    #TC10 - Budget has more than 2 decimals
+    @freeze_time("2025-01-01")
+    def test_tc10_budget_more_than_2_dec(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345674", "PROJ01", "Main Research Proj", "HR", "31/12/2024", 75.0002)
 
 
 
