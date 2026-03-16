@@ -22,5 +22,12 @@ class TestRegisterProject(unittest.TestCase):
         self.assertEqual(len(res), 32)
         self.assertTrue(all(c in "0123456789abcdef" for c in res))
 
+    #TC2 - Acronym too short (4)
+    @freeze_time("2025-01-01")
+    def test_tc2_acr_short(self):
+        with self.assertRaises(EnterpriseManagementException):
+            self.mgr.register_project("A12345678", "PRJ1", "Main Research Proj", "HR", "15/06/2026", 100000.00)
+
+
 if __name__ == "__main__":
      unittest.main()
