@@ -8,7 +8,7 @@ class TestRegisterProject(unittest.TestCase):
     def setUp(self):
         #clearing JSON before each test to ensure no clashes
         self.mgr= EnterpriseManager()
-        fp= os.path.join(os.path.dirname(__file__), "../../main/python/uc3m_consulting/corporate_operations.json")
+        fp= os.path.join(os.path.dirname(__file__), "corporate_operations.json")
 
         if os.path.exists(fp):
             os.remove(fp)
