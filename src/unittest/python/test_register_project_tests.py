@@ -117,5 +117,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid budget format")
 
+    def test_tc22_year_2028_upper_bound(self):
+        """TC22: Year 2028 - Upper Bound (Invalid)"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="HR",
+                date="01/01/2028",
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Invalid year")
+
 if __name__ == '__main__':
     unittest.main()
