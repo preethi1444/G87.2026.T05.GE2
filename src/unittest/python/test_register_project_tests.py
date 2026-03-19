@@ -159,5 +159,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Description too short")
 
+    def test_tc25_duplicate_project(self):
+        """TC25: Duplicate Project - Same acronym 'PROJ01' (Invalid)"""
+        my_manager = EnterpriseManager()
+        my_manager.register_project(
+            "A12345674", "PROJ01", "Valid Description Long", "HR", "15/06/2026", 100000.00
+        )
+
+        # Second registration with same acronym (Should fail)
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                "A12345674", "PROJ01", "Different Desc But Same Acronym", "HR", "15/06/2026", 100000.00
+            )
+        self.assertEqual(str(context.exception), "Project already exists")
+
 if __name__ == '__main__':
     unittest.main()
