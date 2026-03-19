@@ -92,7 +92,7 @@ class TestRegisterProject(unittest.TestCase):
     # TC13 - Date at end of range
     @freeze_time("2025-01-01")
     def test_tc13_date_end_of_range(self):
-        res = self.mgr.register_project("A12345678", "PROJ01!", "Main Research Proj", "HR", "31/12/2027", 100000.00)
+        res = self.mgr.register_project("A12345678", "PROJ01", "Main Research Proj", "HR", "31/12/2027", 100000.00)
         self.assertIsInstance(res, str)
         self.assertEqual(len(res), 32)
 
