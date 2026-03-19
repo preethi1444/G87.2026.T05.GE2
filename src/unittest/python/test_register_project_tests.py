@@ -103,5 +103,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid acronym length")
 
+    def test_tc21_budget_no_decimals(self):
+        """TC21: Budget with 0 decimals"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="HR",
+                date="01/01/2026",
+                budget=60000
+            )
+        self.assertEqual(str(context.exception), "Invalid budget format")
+
 if __name__ == '__main__':
     unittest.main()
