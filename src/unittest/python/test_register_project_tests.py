@@ -33,5 +33,19 @@ class TestRegisterProject(unittest.TestCase):
                 )
             self.assertEqual(str(context.exception), "Invalid CIF length")
 
+    def test_tc16_invalid_department(self):
+        """TC16: Invalid Department - MARKETING """
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="MARKETING",  # INVALID DEPARTMENT
+                date="15/06/2026",
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Invalid department")
+
 if __name__ == '__main__':
     unittest.main()
