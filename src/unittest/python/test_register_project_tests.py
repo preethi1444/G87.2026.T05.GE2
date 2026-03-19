@@ -31,7 +31,6 @@ class TestRegisterProject(unittest.TestCase):
                     date="15/06/2026",
                     budget=100.0
                 )
-            # THIS IS WHAT CAUSES THE FAIL:
             self.assertEqual(str(context.exception), "Invalid CIF length")
 
 if __name__ == '__main__':
