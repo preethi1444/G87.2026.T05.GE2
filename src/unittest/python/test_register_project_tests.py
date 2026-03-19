@@ -131,5 +131,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid year")
 
+    def test_tc23_date_in_past(self):
+        """TC23: Date in the past """
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="HR",
+                date="01/01/2025",  # PAST DATE
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Date cannot be in the past")
+
 if __name__ == '__main__':
     unittest.main()
