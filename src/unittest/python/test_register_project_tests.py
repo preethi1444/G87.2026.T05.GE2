@@ -145,5 +145,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Date cannot be in the past")
 
+    def test_tc24_description_at_nine_chars(self):
+        """TC24: Description at 9 chars"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Nine char",  # EXACTLY 9 CHARACTERS
+                department="HR",
+                date="15/06/2026",
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Description too short")
+
 if __name__ == '__main__':
     unittest.main()

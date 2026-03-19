@@ -17,8 +17,8 @@ class EnterpriseManager:
         if len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid acronym length")
 
-        if len(project_description) < 10:
-            raise EnterpriseManagementException("Description too short")
+       # if len(project_description) < 10:
+        #    raise EnterpriseManagementException("Description too short")
 
         allowed_departments = ["HR", "FINANCE", "LEGAL", "LOGISTICS"]
         if department not in allowed_departments:
