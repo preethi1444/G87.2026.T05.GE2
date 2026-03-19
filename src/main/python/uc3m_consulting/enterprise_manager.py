@@ -30,6 +30,9 @@ class EnterpriseManager:
         if len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid acronym length")
 
+        if not isinstance(budget, float):
+            raise EnterpriseManagementException("Invalid budget format")
+
         return new_project.project_id
     @staticmethod
     def validate_cif(cif: str):
