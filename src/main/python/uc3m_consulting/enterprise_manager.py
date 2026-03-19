@@ -69,8 +69,8 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid department")
 
         #ECV13 is string
-        if not isinstance(date, str):
-            raise EnterpriseManagementException("Invalid date type")
+        #if not isinstance(date, str):
+        #    raise EnterpriseManagementException("Invalid date type")
 
         #ECV14,17,18,19
         try:
@@ -121,5 +121,6 @@ class EnterpriseManager:
         data.append(proj.to_json())
         with open(fp, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
+
 
         return proj.project_id
