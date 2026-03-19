@@ -8,13 +8,14 @@ class EnterpriseManager:
         pass
 
     def register_project(self, company_cif, project_acronym, project_description, department, date, budget):
-        # 1. TC15: Validate CIF Length (Must be 9)
         if len(company_cif) != 9:
             raise EnterpriseManagementException("Invalid CIF length")
 
-        # 2. TC14: Validate Date Format (Must be DD/MM/YYYY)
+        allowed_departments = ["HR", "FINANCE", "LEGAL", "LOGISTICS"]
+        if department not in allowed_departments:
+            raise EnterpriseManagementException("Invalid department")
+
         try:
-            # Handles "32/01/2026" by throwing a ValueError
             req_date = datetime.strptime(date, "%d/%m/%Y")
         except ValueError:
             raise EnterpriseManagementException("Invalid date format")
