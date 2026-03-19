@@ -22,9 +22,14 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Project already exists")
 
         # 4. Acronym Length (TC20)
-        # ECV8 need to check string between 5 to 10 chars
+        # ECV8 need to check string between 5 and 10 chars
         if len(project_acronym) <5 or len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid acronym length")
+
+        #ECV9 can only have letters A-Z or numbers 0-9
+        for ch in project_acronym:
+            if not (ch.isupper() or ch.isdigit()):
+                raise EnterpriseManagementException("Invalid acronym")
 
         # 5. Description Length (TC24)
         if len(project_description) < 10:
