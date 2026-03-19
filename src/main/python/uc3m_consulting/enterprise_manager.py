@@ -3,27 +3,36 @@ from .enterprise_project import EnterpriseProject
 from datetime import datetime
 
 class EnterpriseManager:
-    """Class for providing the methods for managing the orders"""
     def __init__(self):
-        pass
+        self.registered_acronyms = []
 
     def register_project(self, company_cif, project_acronym, project_description, department, date, budget):
+        # 1. Budget Format Check (TC21)
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid budget format")
 
+        # 2. CIF Length (TC15)
         if len(company_cif) != 9:
             raise EnterpriseManagementException("Invalid CIF length")
 
+        # 3. Duplicate Check (TC25) - This will work now!
+        if project_acronym in self.registered_acronyms:
+            raise EnterpriseManagementException("Project already exists")
+
+        # 4. Acronym Length (TC20)
         if len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid acronym length")
 
+        # 5. Description Length (TC24)
         if len(project_description) < 10:
             raise EnterpriseManagementException("Description too short")
 
+        # 6. Department Validation (TC16)
         allowed_departments = ["HR", "FINANCE", "LEGAL", "LOGISTICS"]
         if department not in allowed_departments:
             raise EnterpriseManagementException("Invalid department")
 
+        # 7. Date & Year Validation (TC22, TC23)
         try:
             req_date = datetime.strptime(date, "%d/%m/%Y")
             if req_date < datetime.now():
@@ -33,9 +42,12 @@ class EnterpriseManager:
         except ValueError:
             raise EnterpriseManagementException("Invalid date format")
 
+        # 8. Budget Range (TC17)
         if budget < 0 or budget > 1000000.00:
             raise EnterpriseManagementException("Invalid budget")
 
+        # SUCCESS PATH: Register and Save
+        self.registered_acronyms.append(project_acronym)
         new_project = EnterpriseProject(company_cif, project_acronym, project_description,
                                         department, date, budget)
 
