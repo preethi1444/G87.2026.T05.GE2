@@ -89,5 +89,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid date format")
 
+    def test_tc20_acronym_too_long(self):
+        """TC20: Acronym too long"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJECTTOOLONG",
+                project_description="Main Research Proj",
+                department="HR",
+                date="15/06/2026",
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Invalid acronym length")
+
 if __name__ == '__main__':
     unittest.main()
