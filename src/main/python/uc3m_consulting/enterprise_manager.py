@@ -6,19 +6,19 @@ from datetime import datetime
 
 class EnterpriseManager:
     def __init__(self):
-        self.registered_acronyms = []
+        pass
 
     def register_project(self, company_cif, project_acronym, project_description, department, date, budget):
         # 1. Budget Format Check (TC21)
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid budget format")
 
-        # 2. CIF Length (TC15)
-        if len(company_cif) != 9:
+        # 2. CIF Length (TC15) (ECV1-ECV6)
+        if not self.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid CIF length")
 
         # 3. Duplicate Check (TC25) - This will work now!
-        if project_acronym in self.registered_acronyms:
+        #if project_acronym in self.registered_acronyms:
             raise EnterpriseManagementException("Project already exists")
 
         # 4. Acronym Length (TC20)
