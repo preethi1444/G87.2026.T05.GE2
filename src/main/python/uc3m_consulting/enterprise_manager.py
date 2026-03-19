@@ -15,10 +15,10 @@ class EnterpriseManager:
         if department not in allowed_departments:
             raise EnterpriseManagementException("Invalid department")
 
-        try:
-            req_date = datetime.strptime(date, "%d/%m/%Y")
-        except ValueError:
-            raise EnterpriseManagementException("Invalid date format")
+        #try:
+        #    req_date = datetime.strptime(date, "%d/%m/%Y")
+        #except ValueError:
+        #    raise EnterpriseManagementException("Invalid date format")
         new_project = EnterpriseProject(company_cif, project_acronym, project_description,
                                         department, date, budget)
         if budget < 0 or budget > 1000000.00:
