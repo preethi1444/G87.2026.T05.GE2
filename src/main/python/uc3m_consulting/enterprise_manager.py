@@ -27,6 +27,9 @@ class EnterpriseManager:
         if len(project_description) < 10:
             raise EnterpriseManagementException("Description too short")
 
+        if len(project_acronym) > 10:
+            raise EnterpriseManagementException("Invalid acronym length")
+
         return new_project.project_id
     @staticmethod
     def validate_cif(cif: str):
