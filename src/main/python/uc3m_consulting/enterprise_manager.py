@@ -88,6 +88,11 @@ class EnterpriseManager:
 
     @staticmethod
     def validate_cif(cif: str):
-        """RETURNs TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
-        OR FALSE IN OTHER CASE"""
+        #ECV1 check string
+        if not isinstance(cif, str):
+            return False
+
+        #ECV2 only 9 chars
+        if len(cif) !=9:
+            return False
         return True
