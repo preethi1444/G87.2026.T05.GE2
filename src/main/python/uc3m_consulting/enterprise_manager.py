@@ -52,8 +52,10 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid date format")
 
         # 8. Budget Range (TC17)
-        if budget < 0 or budget > 1000000.00:
+        # budget between 50000 and 1000000
+        if budget < 50000 or budget > 1000000.00:
             raise EnterpriseManagementException("Invalid budget")
+
         #ECV22 only 2 decimals allowed
         if round(budget, 2) != budget:
             raise EnterpriseManagementException("Invalid decimals for budget")
