@@ -54,6 +54,9 @@ class EnterpriseManager:
         # 8. Budget Range (TC17)
         if budget < 0 or budget > 1000000.00:
             raise EnterpriseManagementException("Invalid budget")
+        #ECV22 only 2 decimals allowed
+        if round(budget, 2) != budget:
+            raise EnterpriseManagementException("Invalid decimals for budget")
 
         # SUCCESS PATH: Register and Save
         self.registered_acronyms.append(project_acronym)
