@@ -95,4 +95,21 @@ class EnterpriseManager:
         #ECV2 only 9 chars
         if len(cif) !=9:
             return False
+
+        #ECV4 first char must be letter
+        if not cif[0].isalpha():
+            return False
+
+        #ECV5 middle 7 chars must be digits
+        mid = cif[1:8]
+        if not mid.isdigit():
+            return False
+
+        #ECV6 last char must be valid control digit
+        if not cif[8].isdigit():
+            return False
+
+        #ECV3 CIF valid
+        tot = sum(int(x) for x in mid)
+        return (tot%10)==int(cif[8])
         return True
