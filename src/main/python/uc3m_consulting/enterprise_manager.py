@@ -16,8 +16,8 @@ class EnterpriseManager:
             return False
 
         #ECV2 must be 9 chars exactly
-        #if len(cif)!=9:
-        #    return False
+        if len(cif)!=9:
+            return False
 
         #EVC4 first character must be letter
         if not cif[0].isalpha():
@@ -47,8 +47,8 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid acronym")
 
         #ECV8 string between 5 to 10 characters
-        #if len(project_acronym)<5 or len(project_acronym)>10:
-        #    raise EnterpriseManagementException("Invalid acronym length")
+        if len(project_acronym)<5 or len(project_acronym)>10:
+            raise EnterpriseManagementException("Invalid acronym length")
 
         #ECV9 only letters A-Z or numerical 0-9
         for ch in project_acronym:
@@ -98,7 +98,6 @@ class EnterpriseManager:
         #ECV23 number is between 50000.00 and 1000000.00
         if budget < 50000.00 or budget > 1000000.00:
             raise EnterpriseManagementException("Invalid budget amount")
-
 
         #ECV26 json file
         fp = os.path.join(os.path.dirname(__file__), "corporate_operations.json")
