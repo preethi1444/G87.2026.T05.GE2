@@ -61,5 +61,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid budget")
 
+    def test_tc18_description_at_min_10(self):
+        """TC18: Desc at min (10) """
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Ten Char",
+                department="HR",
+                date="15/06/2026",
+                budget=100000.00
+            )
+        self.assertEqual(str(context.exception), "Description too short")
+
 if __name__ == '__main__':
     unittest.main()
