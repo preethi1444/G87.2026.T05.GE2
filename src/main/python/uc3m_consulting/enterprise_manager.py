@@ -32,7 +32,8 @@ class EnterpriseManager:
                 raise EnterpriseManagementException("Invalid acronym")
 
         # 5. Description Length (TC24)
-        if len(project_description) < 10:
+        #ECV11 between 10-30 chars
+        if len(project_description) < 10 or len(project_description) > 30:
             raise EnterpriseManagementException("Description too short")
 
         # 6. Department Validation (TC16)
