@@ -17,6 +17,9 @@ class EnterpriseManager:
 
         try:
             req_date = datetime.strptime(date, "%d/%m/%Y")
+            if req_date.year < 2025 or req_date.year > 2027:
+                raise EnterpriseManagementException("Invalid year")
+
         except ValueError:
             raise EnterpriseManagementException("Invalid date format")
         new_project = EnterpriseProject(company_cif, project_acronym, project_description,
