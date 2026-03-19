@@ -1,0 +1,12 @@
+[
+    {
+        "company_cif": "A12345678",
+        "project_description": "Main Research Proj",
+        "project_acronym": "PROJ01",
+        "project_budget": 100000.0,
+        "department": "HR",
+        "starting_date": "32/01/2026",
+        "time_stamp": 1773920536.304541,
+        "project_id": "4174e414d2a4c784f06791ccd0d646c0"
+    }
+]
