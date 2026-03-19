@@ -73,18 +73,18 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid date type")
 
         #ECV14,17,18,19
-        #try:
+        try:
             req_date = datetime.strptime(date, "%d/%m/%Y")
-        #except ValueError:
-         #   raise EnterpriseManagementException("Invalid date format")
+        except ValueError:
+            raise EnterpriseManagementException("Invalid date format")
 
         #ECV15 year between 2025-2027
-        #if req_date.year < 2025 or req_date.year > 2027:
-        #    raise EnterpriseManagementException("Invalid year")
+        if req_date.year < 2025 or req_date.year > 2027:
+            raise EnterpriseManagementException("Invalid year")
 
         #ECV20 date >= request date
-        #if req_date < datetime.now():
-        #    raise EnterpriseManagementException("Date before request date")
+        if req_date < datetime.now():
+            raise EnterpriseManagementException("Date before request date")
 
         #ECV21 is float
         if not isinstance(budget, float):
