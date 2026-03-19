@@ -20,5 +20,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid date format")
 
+    def test_tc15_cif_too_short(self):
+            my_manager = EnterpriseManager()
+            with self.assertRaises(EnterpriseManagementException) as context:
+                my_manager.register_project(
+                    company_cif="A1234567",  # 8 chars
+                    project_acronym="PROJ01",
+                    project_description="Main",
+                    department="HR",
+                    date="15/06/2026",
+                    budget=100.0
+                )
+            # THIS IS WHAT CAUSES THE FAIL:
+            self.assertEqual(str(context.exception), "Invalid CIF length")
+
 if __name__ == '__main__':
     unittest.main()
