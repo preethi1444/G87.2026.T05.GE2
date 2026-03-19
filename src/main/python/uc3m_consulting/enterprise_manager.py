@@ -24,6 +24,9 @@ class EnterpriseManager:
         if budget < 0 or budget > 1000000.00:
             raise EnterpriseManagementException("Invalid budget")
 
+        if len(project_description) < 10:
+            raise EnterpriseManagementException("Description too short")
+
         return new_project.project_id
     @staticmethod
     def validate_cif(cif: str):
