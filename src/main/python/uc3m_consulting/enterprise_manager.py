@@ -21,6 +21,8 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid date format")
         new_project = EnterpriseProject(company_cif, project_acronym, project_description,
                                         department, date, budget)
+        if budget < 0 or budget > 1000000.00:
+            raise EnterpriseManagementException("Invalid budget")
 
         return new_project.project_id
     @staticmethod
