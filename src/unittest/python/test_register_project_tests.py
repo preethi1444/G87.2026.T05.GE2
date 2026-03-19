@@ -19,5 +19,18 @@ class TestRegisterProject(unittest.TestCase):
                 budget=100000.00
             )
 
+    def test_tc15_invalid_cif_length_8(self):
+        """TC14: Invalid CIF - Length is 8 (Expected 9)"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A1234567",  # Only 8 characters
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="HR",
+                date="15/06/2026",
+                budget=100000.00
+            )
+
 if __name__ == '__main__':
     unittest.main()
