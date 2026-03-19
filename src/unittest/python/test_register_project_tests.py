@@ -47,5 +47,19 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Invalid department")
 
+    def test_tc17_budget_above_max(self):
+        """TC17: Budget just above max - 1,000,000.01"""
+        my_manager = EnterpriseManager()
+        with self.assertRaises(EnterpriseManagementException) as context:
+            my_manager.register_project(
+                company_cif="A12345674",
+                project_acronym="PROJ01",
+                project_description="Main Research Proj",
+                department="HR",
+                date="15/06/2026",
+                budget=1000000.01  # INVALID: 0.01 over the limit
+            )
+        self.assertEqual(str(context.exception), "Invalid budget")
+
 if __name__ == '__main__':
     unittest.main()
