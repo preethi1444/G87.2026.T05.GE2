@@ -61,11 +61,30 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid decimals for budget")
 
         # SUCCESS PATH: Register and Save
-        self.registered_acronyms.append(project_acronym)
-        new_project = EnterpriseProject(company_cif, project_acronym, project_description,
-                                        department, date, budget)
+        #ECV26
+        fp = os.path.join(os.path.dirname(__file__), "corporate_operations.json")
+        if os.path.exists(fp):
+            with open(fp, "r", encoding="utf-8") as f:
+                try: data = json.load(f)
+                except json.decoder.JSONDecodeError:
+                    data=[]
+        else:
+            data=[]
 
-        return new_project.project_id
+        #ECV28 duplicate check
+        for rec in data:
+            if rec["company cif"] == company_cif and rec["project_acronym"] == project_acronym:
+                raise EnterpriseManagementException("Project already exists")
+
+        #ECV24,25,26 returning ID
+        new_proj = EnterpriseProject(company_cif, project_acronym, project_description,
+                                        department, date, budget)
+        data.append(new_proj.to_json())
+        with open(fp, "w", encoding="utf-8") as f: json.dump(data, f, indent=4)
+
+        return new_proj.project_id
+
+
 
     @staticmethod
     def validate_cif(cif: str):
