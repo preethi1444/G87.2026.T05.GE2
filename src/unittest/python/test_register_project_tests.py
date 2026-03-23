@@ -173,5 +173,14 @@ class TestRegisterProject(unittest.TestCase):
             )
         self.assertEqual(str(context.exception), "Project already exists")
 
+    def test_tc26_md5_format(self):
+        """TC26: Verify Project ID is a valid 32-char MD5 string"""
+        my_manager = EnterpriseManager()
+        project_id = my_manager.register_project(
+            "A12345674", "PROJVALID", "This is a long valid desc", "HR", "15/06/2026", 100000.00
+        )
+        self.assertEqual(len(project_id), 32)
+        self.assertTrue(all(c in "0123456789abcdef" for c in project_id))
+
 if __name__ == '__main__':
     unittest.main()
