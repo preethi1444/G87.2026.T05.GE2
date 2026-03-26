@@ -107,4 +107,3 @@ class EnterpriseManager:
         #ECV3 CIF valid
         tot = sum(int(x) for x in mid)
         return (tot%10)==int(cif[8])
-        return True
