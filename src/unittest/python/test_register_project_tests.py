@@ -8,7 +8,7 @@ from src.main.python.uc3m_consulting.enterprise_management_exception import Ente
 class TestRegisterProject(unittest.TestCase):
     """Test suite for the register_project method (Method 1)"""
 
-    def setUp(self):
+    def setup(self):
         # clearing JSON before each test to ensure no clashes
         self.mgr = EnterpriseManager()
         fp = os.path.join(os.path.dirname(__file__), "../../main/python/uc3m_consulting/corporate_operations.json")
