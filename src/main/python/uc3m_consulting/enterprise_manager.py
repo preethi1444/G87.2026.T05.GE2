@@ -104,6 +104,6 @@ class EnterpriseManager:
         if not cif[8].isdigit():
             return False
 
-        #ECV3 CIF valid
+        #ECV3 CIF valid overall
         tot = sum(int(x) for x in mid)
         return (tot%10)==int(cif[8])

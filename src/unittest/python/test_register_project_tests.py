@@ -24,13 +24,13 @@ class TestRegisterProject(unittest.TestCase):
         self.assertEqual(len(res), 32)
         self.assertTrue(all(c in "0123456789abcdef" for c in res))
 
-    # TC2 - Acronym too short (4)
+    # TC2 - Acronym too short
     @freeze_time("2025-01-01")
     def test_tc2_acr_short(self):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345678", "PRJ1", "Main Research Proj", "HR", "15/06/2026", 100000.00)
 
-    # TC3 - CIF too long (10)
+    # TC3 - CIF too long
     @freeze_time("2025-01-01")
     def test_tc3_cif_long(self):
         with self.assertRaises(EnterpriseManagementException):
@@ -61,7 +61,7 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345670", "PROJ01", "Main Research Proj", "HR", "15/06/2026", 100000.00)
 
-    # TC8 - Desc too long (31)
+    # TC8 - Desc too long
     @freeze_time("2025-01-01")
     def test_tc8_desc_too_long(self):
         with self.assertRaises(EnterpriseManagementException):
@@ -79,7 +79,7 @@ class TestRegisterProject(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException):
             self.mgr.register_project("A12345678", "PROJ01", "Main Research Proj", "HR", "31/12/2024", 75.0002)
 
-    # TC11 - Acronym at max (10)
+    # TC11 - Acronym at max
     @freeze_time("2025-01-01")
     def test_tc11_acr_at_max(self):
         res = self.mgr.register_project("A12345678", "PROJECT001", "Main Research Proj", "HR", "31/12/2026", 100000.00)
