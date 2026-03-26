@@ -43,7 +43,7 @@ class EnterpriseManager:
         else:
             data = []
 
-        # ECV28 duplicate check
+        # ECV28 EnterpriseManagementException when project with same name and CIF already exists
         for rec in data:
             if rec["company_cif"] == company_cif and rec["project_acronym"] == project_acronym:
                 raise EnterpriseManagementException("Project already exists")
